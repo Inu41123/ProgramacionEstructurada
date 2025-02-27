@@ -27,19 +27,28 @@ public class ProgrmasCiclos1 {
 
                    String nombre = "", salida = "";
                    double numVetnas = 0.0, sueldoBase = 0.0, comisioon = 0.0, SueldoTotal = 0.0;
+                   double v1 = 0.0, v2 = 0.0, v3= 0.0;
                    int numVendedores = 0;
 
 
                    numVendedores = Integer.parseInt(JOptionPane.showInputDialog("introduce el numero de vendedores"));
                    sueldoBase = Double.parseDouble(JOptionPane.showInputDialog("intodcue el sueldo base"));
 
-                   salida = "Nombre \t\t\t\tComision\t\t\tSueldo Total\n";
+                   salida = "Nombre: " + "\t\t\t\t" + nombre + "Comision: " + "\t\t\t" + comisioon + "Sueldo Total: " + SueldoTotal;
 
                    int i = 1;
                    while (i<=numVendedores){
                        nombre = JOptionPane.showInputDialog("INTRODUCE EL NOMBRE DEL VENDEDOR" + i);
                        salida+= nombre + "\t\t\t\t" + comisioon + "\t\t\t\t" + SueldoTotal + "\n";
 
+                       v1 = Double.parseDouble(JOptionPane.showInputDialog("Introduce la venta 1"));
+                       v2 = Double.parseDouble(JOptionPane.showInputDialog("Introduce la venta 2"));
+                       v3 = Double.parseDouble(JOptionPane.showInputDialog("Introduce la venta 3"));
+
+                       comisioon = (v1 + v2 + v3) * 0.10;
+                       SueldoTotal = sueldoBase + comisioon;
+
+                       salida +=nombre + "   " + comisioon + SueldoTotal;
                        i++;
                    }
                    JOptionPane.showMessageDialog(null,salida);
@@ -50,6 +59,58 @@ public class ProgrmasCiclos1 {
                case "3":
                    JOptionPane.showMessageDialog(null, "opcion 3");
 
+                   //tienda de bolitas
+                   String respuesta = "", resultado = "";
+                   double totalCompra = 0.0;
+                   boolean sentinel2 = true;
+                   double descuento = 0.0, importe =0.0, total =0.0;
+                   String tipoBolita = "";
+                   String menuBolitas = "tombola\n" +
+                           "a) bolita roja\n" +
+                           "b) bolita amarilla\n" +
+                           "c) bolita blanca\n" +
+                           "Elejir opcion";
+
+                   resultado = "Total de vnetas \n  " +
+                           "Total a pagar" +
+                           "Descuento" +
+                           "Importe \n";
+
+                   do {
+
+                       totalCompra = Double.parseDouble(JOptionPane.showInputDialog("Introduce el total de la compra"));
+                       tipoBolita = JOptionPane.showInputDialog(menuBolitas);
+
+                       if (tipoBolita.equalsIgnoreCase("a")||
+                               tipoBolita.equalsIgnoreCase("b")||
+                                       tipoBolita.equalsIgnoreCase("c"))
+                       {
+
+                           if(tipoBolita.equalsIgnoreCase("a")){
+                               descuento = totalCompra * 0.40;
+                           } else if (tipoBolita.equalsIgnoreCase("b")) {
+                               descuento = totalCompra * 0.25;
+                           }else {
+                               descuento =0.0;
+                           }
+
+                           importe = totalCompra + descuento;
+                           total+=importe;
+                           resultado += totalCompra + "     " + descuento  +  "     " + importe + "\n";
+
+                       }else{
+                           JOptionPane.showMessageDialog(null, "Bolita no valida");
+                       }
+
+                       salida = JOptionPane.showInputDialog("Deseas cerrar la caja si/no");
+                       if (salida.equalsIgnoreCase("si")){
+                           sentinel2 = false;
+                       }
+
+                   }while (sentinel2);
+
+                   resultado+="Total: " + total;
+                    JOptionPane.showMessageDialog(null, resultado);
                    break;
 
                case "4":

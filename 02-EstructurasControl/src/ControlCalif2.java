@@ -20,6 +20,18 @@ public class ControlCalif2 {
         }
 
         System.out.println("final");
+
+
+
+int nu = 98;
+
+while(0<=100){
+    System.out.println(nu);
+    nu++;
+
+}
+
+
     }
 
 
